@@ -11,9 +11,11 @@ var App = React.createClass({
   ],
 
   render() {
-    <div>
-      <h1>Homepage</h1>
-    </div>
+    return(
+      <div>
+        <h1>Homepage</h1>
+      </div>
+    );
   },
 
 });
