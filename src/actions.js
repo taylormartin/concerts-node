@@ -1,9 +1,6 @@
 import Reflux from 'reflux';
 
-export var actions = Reflux.createActions({
-  'citySearch': {asyncResult: true},
-});
+export var actions = Reflux.createActions([
+  'citySearch'
+]);
 
-actions.citySearch.listenAndPromise(function(city){
- return {}; 
-});

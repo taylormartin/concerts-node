@@ -10,8 +10,8 @@ export var store = Reflux.createStore({
     this.selectedVenues = [];
   },
 
-  onCitySearch() {
-
+  onCitySearch: function() {
+    console.log("logging from the store");
   }
 
 });
