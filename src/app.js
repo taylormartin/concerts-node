@@ -1,5 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
+import ReactDOM from 'react-dom';
 import {concertStore} from './store';
 import {concertActions} from './actions';
 import './styles';
@@ -41,4 +42,5 @@ var App = React.createClass({
 
 });
 
-React.render(<App/>, document.querySelector('#main'));
+ReactDOM.render(<App/>, document.getElementById('main'));
+
