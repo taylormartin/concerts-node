@@ -11,22 +11,22 @@ var App = React.createClass({
     Reflux.connect(concertStore)
   ],
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       cityValue: "i.e. Atlanta",
     };
   },
 
-  handleChange: function(event) {
+  handleChange(event) {
     this.setState({cityValue: event.target.value});
   },
 
-  handleClick: function() {
+  handleClick() {
     var cityValue = this.state.cityValue;
     concertActions.citySearch();
   },
 
-  render: function() {
+  render() {
     
     var cityValue = this.state.cityValue;
 
@@ -38,7 +38,6 @@ var App = React.createClass({
       </div>
     );
   }
-
 
 });
 
