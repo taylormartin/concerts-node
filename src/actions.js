@@ -1,6 +1,6 @@
 import Reflux from 'reflux';
 
-export var actions = Reflux.createActions([
+export var concertActions = Reflux.createActions([
   'citySearch'
 ]);
 

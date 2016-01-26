@@ -1,9 +1,9 @@
 import Reflux from 'reflux';
-import {actions} from './actions';
+import {concertActions} from './actions';
 
-export var store = Reflux.createStore({
+export var concertStore = Reflux.createStore({
   
-  listenables: ['actions'],
+  listenables: concertActions,
 
   init() {
     this.selectedCity = null;
