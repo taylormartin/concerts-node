@@ -1,0 +1,32 @@
+export var citysJSON = [  
+   {  
+      "city":"Atlanta",
+      "state":"GA",
+      "metro_id":4120
+   },
+   {  
+      "city":"East Atlanta",
+      "state":"GA",
+      "metro_id":4120
+   },
+   {  
+      "city":"Atlanta",
+      "state":"TX",
+      "metro_id":95756
+   },
+   {  
+      "city":"Atlanta",
+      "state":"IL",
+      "metro_id":95746
+   },
+   {  
+      "city":"Atlanta",
+      "state":"CO",
+      "metro_id":95741
+   },
+   {  
+      "city":"Atlanta",
+      "state":"NY",
+      "metro_id":35648
+   }
+]

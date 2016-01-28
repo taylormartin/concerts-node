@@ -3,18 +3,28 @@ import Reflux from 'reflux';
 import ReactDOM from 'react-dom';
 import {concertStore} from './store';
 import {concertActions} from './actions';
+import {citysJSON} from './responses/citys';
+import {showsJSON} from './responses/shows';
 import './styles';
 
 var App = React.createClass({
 
   mixins: [
-    Reflux.connect(concertStore)
+    Reflux.connect(concertStore, "shows")
   ],
 
   getInitialState() {
     return {
       cityValue: "i.e. Atlanta",
+      currentShows: {}
     };
+  },
+
+  onCitySearch() {
+    debugger;
+    this.setState({
+      currentShows: {}
+    });
   },
 
   handleChange(event) {
@@ -23,11 +33,11 @@ var App = React.createClass({
 
   handleClick() {
     var cityValue = this.state.cityValue;
-    concertActions.citySearch();
+    concertActions.citySearch(showsJSON);
   },
 
   render() {
-    
+    debugger;
     var cityValue = this.state.cityValue;
 
     return (
