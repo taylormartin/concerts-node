@@ -16,15 +16,7 @@ var App = React.createClass({
   getInitialState() {
     return {
       cityValue: "i.e. Atlanta",
-      currentShows: {}
     };
-  },
-
-  onCitySearch() {
-    debugger;
-    this.setState({
-      currentShows: {}
-    });
   },
 
   handleChange(event) {

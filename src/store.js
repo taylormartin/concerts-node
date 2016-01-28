@@ -14,7 +14,7 @@ export var concertStore = Reflux.createStore({
   onCitySearch(showsJSON) {
     console.log(showsJSON);
     this.shows = showsJSON;
-    this.trigger(showsJSON);
+    this.trigger(this.shows);
   }
 
 });
