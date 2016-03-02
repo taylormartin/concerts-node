@@ -15,7 +15,7 @@ export var Filter = React.createClass({
   getInitialState() {
     return {
       cityValue: "i.e. Atlanta",
-      criteria: "" 
+      criteria: "gordon" 
     };
   },
 
@@ -34,6 +34,7 @@ export var Filter = React.createClass({
 
   filterShows() {
     var criteria = this.state.criteria;
+    concertActions.filterShows(criteria);
   },
 
   render() {
