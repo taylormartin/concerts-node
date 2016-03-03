@@ -9,15 +9,8 @@ import './styles';
 export var Filter = React.createClass({
 
   mixins: [
-    Reflux.connect(concertStore, "shows")
+    Reflux.connect(concertStore)
   ],
-
-  getInitialState() {
-    return {
-      cityValue: "i.e. Atlanta",
-      criteria: "gordon" 
-    };
-  },
 
   handleChange(event) {
     this.setState({cityValue: event.target.value});
@@ -42,7 +35,7 @@ export var Filter = React.createClass({
   },
 
   render() {
-    var cityValue = this.state.cityValue;
+    var city = this.state.selectedCity;
     var criteria = this.state.criteria;
 
     return (
@@ -52,7 +45,7 @@ export var Filter = React.createClass({
         </div>
         <div>
          <label>City Search:</label>
-         <input name="search-bar" type="text" onChange={this.handleChange} value={cityValue}></input>
+         <input name="search-bar" type="text" onChange={this.handleChange} value={city}></input>
          <button onClick={this.handleClick}>Search</button>
         </div>
         <div className="filter-bar">

@@ -7,14 +7,18 @@ export var concertStore = Reflux.createStore({
 
   init() {
     this.data = {
-      selectedCity = null,
-      venues = [],
-      allVenues = [],
-      shows = [],
-      allShows = [],
-      filteredShows = [],
-      criteria = null
+      selectedCity: "atlanta",
+      venues:  [],
+      allVenues: [],
+      shows: [],
+      allShows: [],
+      filteredShows: [],
+      criteria: "widespread"
     };
+  },
+
+  getInitialState: function () {
+    return this.data;
   },
 
   onCitySearch(showsJSON) {
@@ -37,13 +41,13 @@ export var concertStore = Reflux.createStore({
         filteredShows.push(show);
       }
     }
-    this.shows = filteredShows;
-    this.trigger(this.shows);
+    this.data.shows = filteredShows;
+    this.trigger(this.data);
   },
 
   onResetShows() {
-    this.shows = this.allShows;
-    this.trigger(this.shows);
+    this.data.shows = this.data.allShows;
+    this.trigger(this.data);
   }
 
 });

@@ -7,14 +7,8 @@ import './styles';
 export var Shows = React.createClass({
 
   mixins: [
-    Reflux.connect(concertStore, "shows"),
+    Reflux.connect(concertStore),
   ],
-
-  getInitialState() {
-    return {
-      shows: []
-    };
-  },
   
   getShowsMarkup(shows) {
     if ( shows !== undefined ) {

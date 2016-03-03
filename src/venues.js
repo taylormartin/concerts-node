@@ -6,20 +6,14 @@ import './styles';
 
 export var Venues = React.createClass({
   mixins: [
-    Reflux.connect(concertStore, "venues")
+    Reflux.connect(concertStore)
   ],
-
-  getInitialState() {
-    return {
-      venues: []
-    };
-  },
 
   getVenuesMarkup(venues) {
     if ( venues !== undefined ) {
       var venuesMarkup = venues.map((venue, index) => {
         return (
-          <input className="venue-checkbox" key={index} type="checkbox" value={venue}/>
+          <div key={index}><input className="venue-checkbox" type="checkbox" value={venue}/>{venue}</div>
         );
       });
     } else {
