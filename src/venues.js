@@ -9,11 +9,27 @@ export var Venues = React.createClass({
     Reflux.connect(concertStore)
   ],
 
+  filterVenues() {
+
+  },
+
+  venueChange(event) {
+    var venue = event.target.value;
+    var checked = event.target.checked;
+    if (checked) {
+      this.state.venues.push(venue);
+    } else {
+      var i = this.state.venues.indexOf(venue);
+      this.state.venues.splice(i, 1);
+    }
+    debugger;
+  },
+
   getVenuesMarkup(venues) {
     if ( venues !== undefined ) {
       var venuesMarkup = venues.map((venue, index) => {
         return (
-          <div key={index}><input className="venue-checkbox" type="checkbox" value={venue}/>{venue}</div>
+          <div key={index}><input onClick={this.venueChange} className="venue-checkbox" type="checkbox" value={venue} defaultChecked/>{venue}</div>
         );
       });
     } else {
@@ -32,6 +48,7 @@ export var Venues = React.createClass({
     return (
       <div>
         {venuesMarkup} 
+        <button onClick={this.filterVenues}>Filter Venues</button>
       </div>
     );
   }

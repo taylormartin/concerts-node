@@ -12,7 +12,6 @@ export var concertStore = Reflux.createStore({
       allVenues: [],
       shows: [],
       allShows: [],
-      filteredShows: [],
       criteria: "widespread"
     };
   },
