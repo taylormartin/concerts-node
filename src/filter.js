@@ -37,12 +37,19 @@ export var Filter = React.createClass({
     concertActions.filterShows(criteria);
   },
 
+  resetShows() {
+    concertActions.resetShows();
+  },
+
   render() {
     var cityValue = this.state.cityValue;
     var criteria = this.state.criteria;
 
     return (
       <div> 
+        <div className="reset-button">
+         <button onClick={this.resetShows}>Reset</button>
+        </div>
         <div>
          <label>City Search:</label>
          <input name="search-bar" type="text" onChange={this.handleChange} value={cityValue}></input>
