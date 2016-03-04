@@ -9,8 +9,12 @@ export var Venues = React.createClass({
     Reflux.connect(concertStore)
   ],
 
-  filterVenues() {
+  filterByVenues() {
+    concertActions.filterByVenues();
+  },
 
+  uncheckAll() {
+    this.setState({venues: []});
   },
 
   venueChange(event) {
@@ -22,33 +26,32 @@ export var Venues = React.createClass({
       var i = this.state.venues.indexOf(venue);
       this.state.venues.splice(i, 1);
     }
-    debugger;
   },
 
-  getVenuesMarkup(venues) {
-    if ( venues !== undefined ) {
-      var venuesMarkup = venues.map((venue, index) => {
+  getVenuesMarkup(venues, allVenues) {
+    var venuesMarkup = allVenues.map((venue, index) => {
+      if ( venues.indexOf(venue) === -1 ) {
         return (
-          <div key={index}><input onClick={this.venueChange} className="venue-checkbox" type="checkbox" value={venue} defaultChecked/>{venue}</div>
+          <div key={index}><input onClick={this.venueChange} className="venue-checkbox" type="checkbox" value={venue} checked={false}/>{venue}</div>
         );
-      });
-    } else {
-      var venuesMarkup = () => {
+      } else {
         return (
-          <div></div>
+          <div key={index}><input onClick={this.venueChange} className="venue-checkbox" type="checkbox" value={venue} defaultChecked />{venue}</div>
         );
       }
-    }
+    });
     return venuesMarkup;
   },
 
   render() {
     var venues = this.state.venues;
-    var venuesMarkup = this.getVenuesMarkup(venues);
+    var allVenues = this.state.allVenues;
+    var venuesMarkup = this.getVenuesMarkup(venues, allVenues);
     return (
       <div>
+        <button onClick={this.uncheckAll}>Uncheck All</button>
+        <button onClick={this.filterByVenues}>Filter Venues</button>
         {venuesMarkup} 
-        <button onClick={this.filterVenues}>Filter Venues</button>
       </div>
     );
   }

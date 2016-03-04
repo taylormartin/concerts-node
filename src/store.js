@@ -29,6 +29,20 @@ export var concertStore = Reflux.createStore({
     this.trigger(this.data);
   },
 
+  onFilterByVenues() {
+    var venues = this.data.venues; 
+    var filteredShows =[];
+    for (var index in this.data.shows) {
+      var show = this.data.shows[index];
+      var showInVenues = (venues.indexOf(show.venue_name) === -1 ? false : true)
+      if (showInVenues) {
+        filteredShows.push(show);
+      }
+    }
+    this.data.shows = filteredShows;
+    this.trigger(this.data);
+  },
+
   onFilterShows(criteria) {
     this.data.criteria = criteria;
     var filteredShows = [];
@@ -50,3 +64,4 @@ export var concertStore = Reflux.createStore({
   }
 
 });
+

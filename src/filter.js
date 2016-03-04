@@ -13,7 +13,7 @@ export var Filter = React.createClass({
   ],
 
   handleChange(event) {
-    this.setState({cityValue: event.target.value});
+    this.setState({selectedCity: event.target.value});
   },
 
   handleClick() {
