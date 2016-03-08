@@ -38,7 +38,7 @@ export var Venues = React.createClass({
         checked = true;
       }
       return (
-        <Checkbox checked={checked} onClick={this.venueChange} venue={venue} key={index}/>
+        <Checkbox checked={checked} onChange={this.venueChange} venue={venue} key={index}/>
       );
     });
     return venuesMarkup;
@@ -63,7 +63,7 @@ var Checkbox = React.createClass({
   render() {
     return (
       <div>
-        <input className="venue-checkbox" type="checkbox" onChange={this.props.onClick}
+        <input className="venue-checkbox" type="checkbox" onChange={this.props.onChange}
            value={this.props.venue} checked={this.props.checked}/>
         {this.props.venue}
       </div>

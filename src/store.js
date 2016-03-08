@@ -61,7 +61,8 @@ export var concertStore = Reflux.createStore({
   },
 
   onResetShows() {
-    this.data.shows = this.data.allShows;
+    this.data.shows = this.data.allShows.slice(0);
+    this.data.venues = this.data.allVenues.slice(0);
     this.trigger(this.data);
   }
 
