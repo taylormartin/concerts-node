@@ -22,32 +22,34 @@ export var concertStore = Reflux.createStore({
 
   onCitySearch(showsJSON) {
     console.log(showsJSON);
-    this.data.shows = showsJSON['concerts'];
-    this.data.allShows = showsJSON['concerts'];
-    this.data.venues = showsJSON['venues'];
-    this.data.allVenues = showsJSON['venues'];
+    this.data.shows = showsJSON['concerts'].slice(0);
+    this.data.allShows = showsJSON['concerts'].slice(0);
+    this.data.venues = showsJSON['venues'].slice(0);
+    this.data.allVenues = showsJSON['venues'].slice(0);
     this.trigger(this.data);
   },
 
-  onFilterByVenues() {
-    var venues = this.data.venues; 
-    var filteredShows =[];
-    for (var index in this.data.shows) {
-      var show = this.data.shows[index];
+  onFilterByVenues(venues) {
+    var filteredShows = [];
+    var allShows = this.data.allShows;
+    for (var index in allShows) {
+      var show = allShows[index];
       var showInVenues = (venues.indexOf(show.venue_name) === -1 ? false : true)
       if (showInVenues) {
         filteredShows.push(show);
       }
     }
     this.data.shows = filteredShows;
+    this.data.venues = venues;
     this.trigger(this.data);
   },
 
   onFilterShows(criteria) {
     this.data.criteria = criteria;
+    var allShows = this.data.allShows;
     var filteredShows = [];
-    for (var index in this.data.shows) {
-      var show = this.data.shows[index];
+    for (var index in allShows) {
+      var show = allShows[index];
       var matcher = new RegExp(criteria, "gi");
       var match = show.artist_name.match(matcher);
       if ( match !== null && match.length > 0 ) {

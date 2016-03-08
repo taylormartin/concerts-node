@@ -10,7 +10,8 @@ export var Venues = React.createClass({
   ],
 
   filterByVenues() {
-    concertActions.filterByVenues();
+    var venues = this.state.venues;
+    concertActions.filterByVenues(venues);
   },
 
   uncheckAll() {
@@ -20,25 +21,25 @@ export var Venues = React.createClass({
   venueChange(event) {
     var venue = event.target.value;
     var checked = event.target.checked;
+    var newVenues = this.state.venues;
     if (checked) {
-      this.state.venues.push(venue);
+      newVenues.push(venue);
     } else {
       var i = this.state.venues.indexOf(venue);
-      this.state.venues.splice(i, 1);
+      newVenues.splice(i, 1);
     }
+    this.setState({venues: newVenues});
   },
 
   getVenuesMarkup(venues, allVenues) {
     var venuesMarkup = allVenues.map((venue, index) => {
-      if ( venues.indexOf(venue) === -1 ) {
-        return (
-          <div key={index}><input onClick={this.venueChange} className="venue-checkbox" type="checkbox" value={venue} checked={false}/>{venue}</div>
-        );
-      } else {
-        return (
-          <div key={index}><input onClick={this.venueChange} className="venue-checkbox" type="checkbox" value={venue} defaultChecked />{venue}</div>
-        );
+      var checked = false;
+      if ( venues.indexOf(venue) !== -1 ) {
+        checked = true;
       }
+      return (
+        <Checkbox checked={checked} onClick={this.venueChange} venue={venue} key={index}/>
+      );
     });
     return venuesMarkup;
   },
@@ -55,5 +56,19 @@ export var Venues = React.createClass({
       </div>
     );
   }
+});
+
+var Checkbox = React.createClass({
+
+  render() {
+    return (
+      <div>
+        <input className="venue-checkbox" type="checkbox" onChange={this.props.onClick}
+           value={this.props.venue} checked={this.props.checked}/>
+        {this.props.venue}
+      </div>
+    );
+  }
+
 });
 
