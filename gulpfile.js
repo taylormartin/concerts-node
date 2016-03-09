@@ -40,4 +40,3 @@ gulp.task('clean', function() {
 
 gulp.task("default", ['clean', 'addJsDep', 'addFonts', 'compileSass']);
 
-
