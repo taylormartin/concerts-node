@@ -39,19 +39,21 @@ export var Filter = React.createClass({
     var criteria = this.state.criteria;
 
     return (
-      <div> 
-        <div className="reset-button">
-         <button onClick={this.resetShows}>Reset</button>
-        </div>
-        <div>
-         <label>City Search:</label>
-         <input name="search-bar" type="text" onChange={this.handleChange} value={city}></input>
-         <button onClick={this.handleClick}>Search</button>
-        </div>
-        <div className="filter-bar">
-          <label>Filter Shows:</label>
-          <input name="filter" type="text" onChange={this.handleCriteriaChange} value={criteria}></input>
-          <button onClick={this.filterShows}>Filter</button>
+      <div className="row"> 
+        <div className="col-lg-12 search-filter-bar">
+          <span className="change-input">
+           <label>City Search:</label>
+           <input name="search-bar" type="text" onChange={this.handleChange} value={city}></input>
+           <button onClick={this.handleClick}>Search</button>
+          </span>
+          <span className="change-input">
+            <label>Filter Shows:</label>
+            <input name="filter" type="text" onChange={this.handleCriteriaChange} value={criteria}></input>
+            <button onClick={this.filterShows}>Filter</button>
+          </span>
+          <span className="change-input">
+           <button onClick={this.resetShows}>Reset</button>
+          </span>
         </div>
       </div>
     );

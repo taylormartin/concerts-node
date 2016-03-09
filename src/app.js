@@ -17,11 +17,13 @@ export var Shows = React.createClass({
     if ( shows !== undefined ) {
       var showsMarkup = shows.map((show, index) => {
         return (
-          <div className="concert-card" key={index}>
-            <div>{show.artist_name}</div>
-            <div>{show.venue_name}</div>
-            <div>{show.date}</div>
-            <div>{show.link}</div>
+          <div key={index} className="col-lg-2">
+            <div className="concert-card">
+              <div>{show.artist_name}</div>
+              <div>{show.venue_name}</div>
+              <div>{show.date}</div>
+              <a href={show.link}>Concert Link</a>
+            </div>
           </div>
         );
       });
@@ -44,7 +46,7 @@ export var Shows = React.createClass({
       <div>
         <Venues/>
         <Filter/>
-        <div>
+        <div className="row">
           {showsMarkup} 
         </div>
       </div>
