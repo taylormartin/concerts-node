@@ -2,9 +2,55 @@ import React from 'react';
 import Reflux from 'reflux';
 import ReactDOM from 'react-dom';
 import {Filter} from './filter';
-import {Shows} from './shows';
 import {Venues} from './venues';
+import {concertStore} from './store';
+import {concertActions} from './actions';
+import './styles';
 
-ReactDOM.render(<Filter/>, document.getElementById('filter'));
+export var Shows = React.createClass({
+
+  mixins: [
+    Reflux.connect(concertStore),
+  ],
+  
+  getShowsMarkup(shows) {
+    if ( shows !== undefined ) {
+      var showsMarkup = shows.map((show, index) => {
+        return (
+          <div className="concert-card" key={index}>
+            <div>{show.artist_name}</div>
+            <div>{show.venue_name}</div>
+            <div>{show.date}</div>
+            <div>{show.link}</div>
+          </div>
+        );
+      });
+    } else {
+      var showsMarkup = function() {
+        return (
+          <div></div>   
+        );
+      }
+    }
+    return showsMarkup;
+  },
+
+  render() {
+    var shows = this.state.shows;
+
+    var showsMarkup = this.getShowsMarkup(shows);
+
+    return (
+      <div>
+        <Venues/>
+        <Filter/>
+        <div>
+          {showsMarkup} 
+        </div>
+      </div>
+    );
+  }
+
+});
+
 ReactDOM.render(<Shows/>, document.getElementById('shows'));
-ReactDOM.render(<Venues/>, document.getElementById('venues'));
