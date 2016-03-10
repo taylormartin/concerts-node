@@ -3,6 +3,7 @@ import Reflux from 'reflux';
 import ReactDOM from 'react-dom';
 import {Filter} from './filter';
 import {Venues} from './venues';
+import {Menu} from './menu';
 import {concertStore} from './store';
 import {concertActions} from './actions';
 import './styles';
@@ -12,6 +13,10 @@ export var Shows = React.createClass({
   mixins: [
     Reflux.connect(concertStore),
   ],
+
+  showLeft() {
+    this.refs.left.show();
+  },
   
   getShowsMarkup(shows) {
     if ( shows !== undefined ) {
@@ -44,6 +49,8 @@ export var Shows = React.createClass({
 
     return (
       <div>
+        <button onClick={this.showLeft}>Show Left Menu!</button>
+        <Menu ref="left" alignment="left"/>
         <Venues/>
         <Filter/>
         <div className="row">
