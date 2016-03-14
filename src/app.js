@@ -2,7 +2,6 @@ import React from 'react';
 import Reflux from 'reflux';
 import ReactDOM from 'react-dom';
 import {Filter} from './filter';
-import {Venues} from './venues';
 import {Menu} from './menu';
 import {concertStore} from './stores/show_store';
 import {menuStore} from './stores/menu_store';
@@ -59,7 +58,6 @@ export var Shows = React.createClass({
             <div className="c-buttons">
               <button className="c-button" onClick={this.openLeftMenu}>Slide Left</button> 
             </div>
-            <Venues/>
             <Filter/>
             <div className="row">
               {showsMarkup} 
