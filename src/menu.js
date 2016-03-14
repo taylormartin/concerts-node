@@ -1,30 +1,28 @@
 import React from 'react';
 import Reflux from 'reflux';
-import {concertStore} from './store';
-import {concertActions} from './actions';
-import './styles';
+import {concertActions} from './actions/show_actions';
+import {menuActions} from './actions/menu_actions';
+import './styles/styles';
+import './styles/menu';
 
 export var Menu = React.createClass({
-  
-  getInitialState() {
-    return {
-      visibile: false
-    }
-  },
 
-  show() {
-    this.setState({visible: true}); 
-  },
-
-  hide() {
-    this.setState({visible: false}); 
+  close() {
+    menuActions.closeLeftMenu();
   },
 
   render() {
     return (
-      <div className="menu">
-        <div className={(this.state.visible ? "visible " : "") + this.props.alignment}></div>
-      </div>
+      <nav className={"c-menu c-menu--slide-left" + this.props.active}>
+        <button onClick={this.close} className="c-menu__close">&larr; Close Menu</button>
+        <ul className="c-menu__items">
+          <li className="c-menu__item"><a href="#" className="c-menu__link">Home</a></li>
+          <li className="c-menu__item"><a href="#" className="c-menu__link">About</a></li>
+          <li className="c-menu__item"><a href="#" className="c-menu__link">Services</a></li>
+          <li className="c-menu__item"><a href="#" className="c-menu__link">Work</a></li>
+          <li className="c-menu__item"><a href="#" className="c-menu__link">Contact</a></li>
+        </ul>  
+      </nav>
     );
   }
 

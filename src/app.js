@@ -4,20 +4,24 @@ import ReactDOM from 'react-dom';
 import {Filter} from './filter';
 import {Venues} from './venues';
 import {Menu} from './menu';
-import {concertStore} from './store';
-import {concertActions} from './actions';
-import './styles';
+import {concertStore} from './stores/show_store';
+import {menuStore} from './stores/menu_store';
+import {concertActions} from './actions/show_actions';
+import {menuActions} from './actions/menu_actions';
+import './styles/styles';
+import './styles/menu';
 
 export var Shows = React.createClass({
 
   mixins: [
-    Reflux.connect(concertStore),
+    Reflux.connect(concertStore, "showStatus"),
+    Reflux.connect(menuStore, "menuStatus"),
   ],
 
-  showLeft() {
-    this.refs.left.show();
+  openLeftMenu() {
+    menuActions.openLeftMenu();
   },
-  
+
   getShowsMarkup(shows) {
     if ( shows !== undefined ) {
       var showsMarkup = shows.map((show, index) => {
@@ -43,18 +47,25 @@ export var Shows = React.createClass({
   },
 
   render() {
-    var shows = this.state.shows;
-
+    var shows = this.state.showStatus.shows;
+    var menu = this.state.menuStatus;
     var showsMarkup = this.getShowsMarkup(shows);
 
     return (
       <div>
-        <button onClick={this.showLeft}>Show Left Menu!</button>
-        <Menu ref="left" alignment="left"/>
-        <Venues/>
-        <Filter/>
-        <div className="row">
-          {showsMarkup} 
+        <Menu active={menu.leftMenuActive} />
+        <div className={"total-wrapper " + menu.bodyWrapper}>
+          <div className={menu.oWrapper + " o-wrapper"}>
+            <div className="c-buttons">
+              <button className="c-button" onClick={this.openLeftMenu}>Slide Left</button> 
+            </div>
+            <Venues/>
+            <Filter/>
+            <div className="row">
+              {showsMarkup} 
+            </div>
+          </div>
+          <div className={menu.leftMenuActive + " c-mask"}></div>
         </div>
       </div>
     );

@@ -1,8 +1,9 @@
 import React from 'react';
 import Reflux from 'reflux';
-import {concertStore} from './store';
-import {concertActions} from './actions';
-import './styles';
+import {concertStore} from './stores/show_store';
+import {concertActions} from './actions/show_actions';
+import './styles/styles';
+import './styles/menu';
 
 export var Venues = React.createClass({
   mixins: [

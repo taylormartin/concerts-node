@@ -1,10 +1,11 @@
 import React from 'react';
 import Reflux from 'reflux';
-import {concertStore} from './store';
-import {concertActions} from './actions';
+import {concertStore} from './stores/show_store';
+import {concertActions} from './actions/show_actions';
 import {citysJSON} from './responses/citys';
 import {showsJSON} from './responses/shows';
-import './styles';
+import './styles/styles';
+import './styles/menu';
 
 export var Filter = React.createClass({
 

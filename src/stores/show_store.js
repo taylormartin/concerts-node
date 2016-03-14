@@ -1,5 +1,5 @@
 import Reflux from 'reflux';
-import {concertActions} from './actions';
+import {concertActions} from '../actions/show_actions';
 
 export var concertStore = Reflux.createStore({
   
