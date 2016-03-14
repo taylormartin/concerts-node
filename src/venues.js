@@ -8,34 +8,41 @@ import './styles/menu';
 
 export var Venues = React.createClass({
   mixins: [
-    Reflux.connect(concertStore)
+    Reflux.connect(concertStore, "concertStatus")
   ],
 
   filterByVenues() {
-    var venues = this.state.venues;
+    var venues = this.state.concertStatus.venues;
     concertActions.filterByVenues(venues);
     menuActions.closeLeftMenu();
   },
 
   uncheckAll() {
-    this.setState({venues: []});
+    var blankArray = [];
+    concertActions.updateVenues(blankArray);
   },
 
   venueChange(event) {
     var venue = event.target.value;
     var checked = event.target.checked;
-    var newVenues = this.state.venues;
+    var newVenues = this.state.concertStatus.venues;
+    var currentVenues = this.state.concertStatus.venues;
     if (checked) {
       newVenues.push(venue);
     } else {
-      var i = this.state.venues.indexOf(venue);
+      var i = this.state.concertStatus.venues.indexOf(venue);
       newVenues.splice(i, 1);
     }
-    this.setState({venues: newVenues});
+    concertActions.updateVenues(newVenues);
   },
 
-  getVenuesMarkup(venues, allVenues) {
-    var venuesMarkup = allVenues.map((venue, index) => {
+  textFilterVenues(event) {
+    var criteria = event.target.value;
+    concertActions.textFilterVenues(criteria);
+  },
+
+  getVenuesMarkup(venues, shownVenues) {
+    var venuesMarkup = shownVenues.map((venue, index) => {
       var checked = false;
       if ( venues.indexOf(venue) !== -1 ) {
         checked = true;
@@ -48,14 +55,21 @@ export var Venues = React.createClass({
   },
 
   render() {
-    var venues = this.state.venues;
-    var allVenues = this.state.allVenues;
-    var venuesMarkup = this.getVenuesMarkup(venues, allVenues);
+    var venues = this.state.concertStatus.venues;
+    var shownVenues = this.state.concertStatus.shownVenues;
+    var venuesMarkup = this.getVenuesMarkup(venues, shownVenues);
+    var venueCriteria = this.state.concertStatus.venueCriteria;
     return (
-      <div className="venues-filter">
-        <button onClick={this.uncheckAll}>Uncheck All</button>
-        <button onClick={this.filterByVenues}>Filter Venues</button>
-        {venuesMarkup} 
+      <div>
+        <div>
+         <label>Venue Filter:</label>
+         <input name="venue-text-filter" type="text" onChange={this.textFilterVenues} value={venueCriteria}></input>
+        </div>
+        <div className="venues-filter">
+          <button onClick={this.uncheckAll}>Uncheck All</button>
+          <button onClick={this.filterByVenues}>Filter Venues</button>
+          {venuesMarkup} 
+        </div>
       </div>
     );
   }
@@ -66,8 +80,7 @@ var Checkbox = React.createClass({
   render() {
     return (
       <div className="row">
-        <input className="venue-checkbox" type="checkbox" onChange={this.props.onChange}
-           value={this.props.venue} checked={this.props.checked}/>
+        <input className="venue-checkbox" type="checkbox" onChange={this.props.onChange} value={this.props.venue} checked={this.props.checked}/>
         {this.props.venue}
       </div>
     );

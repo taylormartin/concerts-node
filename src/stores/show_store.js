@@ -9,10 +9,12 @@ export var concertStore = Reflux.createStore({
     this.data = {
       selectedCity: "atlanta",
       venues:  [],
+      shownVenues: [],
       allVenues: [],
       shows: [],
       allShows: [],
-      criteria: "widespread"
+      criteria: "widespread",
+      venueCriteria: ""
     };
   },
 
@@ -24,7 +26,29 @@ export var concertStore = Reflux.createStore({
     this.data.shows = showsJSON['concerts'].slice(0);
     this.data.allShows = showsJSON['concerts'].slice(0);
     this.data.venues = showsJSON['venues'].slice(0);
+    this.data.shownVenues = showsJSON['venues'].slice(0);
     this.data.allVenues = showsJSON['venues'].slice(0);
+    this.trigger(this.data);
+  },
+
+  onTextFilterVenues(criteria) {
+    this.data.venueCriteria = criteria;
+    var allVenues = this.data.allVenues;
+    var filteredVenues = [];
+    for (var index in allVenues) {
+      var venue = allVenues[index];
+      var matcher = new RegExp(criteria, "gi");
+      var match = venue.match(matcher);
+      if ( match !== null && match.length > 0 ) {
+        filteredVenues.push(venue);
+      }
+    }
+    this.data.shownVenues = filteredVenues;
+    this.trigger(this.data);
+  },
+
+  onUpdateVenues(newVenues) {
+    this.data.venues = newVenues;
     this.trigger(this.data);
   },
 
@@ -62,6 +86,7 @@ export var concertStore = Reflux.createStore({
   onResetShows() {
     this.data.shows = this.data.allShows.slice(0);
     this.data.venues = this.data.allVenues.slice(0);
+    this.data.shownVenues = this.data.allVenues.slice(0);
     this.trigger(this.data);
   }
 
