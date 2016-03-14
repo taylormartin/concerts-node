@@ -2,6 +2,7 @@ import React from 'react';
 import Reflux from 'reflux';
 import {concertStore} from './stores/show_store';
 import {concertActions} from './actions/show_actions';
+import {menuActions} from './actions/menu_actions';
 import './styles/styles';
 import './styles/menu';
 
@@ -13,6 +14,7 @@ export var Venues = React.createClass({
   filterByVenues() {
     var venues = this.state.venues;
     concertActions.filterByVenues(venues);
+    menuActions.closeLeftMenu();
   },
 
   uncheckAll() {
@@ -50,7 +52,7 @@ export var Venues = React.createClass({
     var allVenues = this.state.allVenues;
     var venuesMarkup = this.getVenuesMarkup(venues, allVenues);
     return (
-      <div>
+      <div className="venues-filter">
         <button onClick={this.uncheckAll}>Uncheck All</button>
         <button onClick={this.filterByVenues}>Filter Venues</button>
         {venuesMarkup} 
