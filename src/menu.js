@@ -13,7 +13,7 @@ export var Menu = React.createClass({
 
   render() {
     return (
-      <nav className={"c-menu c-menu--slide-left" + this.props.active}>
+      <nav className={"c-menu c-menu--slide-left " + this.props.active}>
         <button onClick={this.close} className="c-menu__close">&larr; Close Menu</button>
         <ul className="c-menu__items">
           <li className="c-menu__item"><a href="#" className="c-menu__link">Home</a></li>
