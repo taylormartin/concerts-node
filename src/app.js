@@ -26,7 +26,7 @@ export var Shows = React.createClass({
               <div>{show.artist_name}</div>
               <div>{show.venue_name}</div>
               <div>{show.date}</div>
-              <a href={show.link}>Concert Link</a>
+              <a target="_blank" href={show.link}>Concert Link</a>
             </div>
           </div>
         );
