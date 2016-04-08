@@ -5,14 +5,13 @@ Simple react/webpack/scss/babel boilerplate
 make sure the right version of node is installed (v4.1.2 works)
 
 ```
-bower install
+  bower install
 
-npm install
+  npm install
 
-gulp
+  gulp
 
-webpack-dev-server
-
+  webpack-dev-server
 ```
 
 it's on port 8080
