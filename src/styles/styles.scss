@@ -7,13 +7,29 @@
 }
 
 .change-input {
-  margin-right: 15px;
+  margin-right: 25px;
 }
 
 .search-filter-bar {
-  margin-bottom: 20px;
+  margin: 20px 0px;
 }
 
 .venues-filter {
   padding-left: 20px;
+}
+
+.search-btn,
+.filter-btn,
+.search-input,
+.filter-input {
+  margin-left: 5px;
+}
+
+.venue-filter-btn {
+  float: left; 
+  font-size: 22px;
+}
+
+.search-filter-reset {
+  float: right;
 }

@@ -6,7 +6,6 @@ import {Menu} from './menu';
 import {concertStore} from './stores/show_store';
 import {menuStore} from './stores/menu_store';
 import {concertActions} from './actions/show_actions';
-import {menuActions} from './actions/menu_actions';
 import './styles/styles';
 import './styles/menu';
 
@@ -17,9 +16,6 @@ export var Shows = React.createClass({
     Reflux.connect(menuStore, "menuStatus"),
   ],
 
-  openLeftMenu() {
-    menuActions.openLeftMenu();
-  },
 
   getShowsMarkup(shows) {
     if ( shows !== undefined ) {
@@ -55,9 +51,6 @@ export var Shows = React.createClass({
         <Menu active={menu.leftMenuActive} />
         <div className={"total-wrapper " + menu.bodyWrapper}>
           <div className={menu.oWrapper + " o-wrapper"}>
-            <div className="c-buttons">
-              <button className="c-button" onClick={this.openLeftMenu}>Slide Left</button> 
-            </div>
             <Filter/>
             <div className="row">
               {showsMarkup} 

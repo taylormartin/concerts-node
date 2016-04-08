@@ -15,7 +15,7 @@ export var Menu = React.createClass({
   render() {
     return (
       <nav className={"c-menu c-menu--slide-left " + this.props.active}>
-        <button onClick={this.close} className="c-menu__close">&larr; Close Menu</button>
+        <div onClick={this.close} className="c-menu__close"><span className="glyphicon glyphicon-remove"></span></div>
         <Venues/>
       </nav>
     );

@@ -18,7 +18,7 @@ gulp.task("addJsDep", function() {
 });
 
 gulp.task('compileSass', function () {
-    return gulp.src('src/bs-application.scss')
+    return gulp.src('src/styles/bs-application.scss')
         .pipe(sass({
           outputStyle: 'nested',
           precison: 3,
