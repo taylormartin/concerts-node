@@ -1,0 +1,35 @@
+.concert-card {
+  border: 1px solid;
+  overflow: hidden;
+  min-height: 150px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.change-input {
+  margin-right: 25px;
+}
+
+.search-filter-bar {
+  margin: 20px 0px;
+}
+
+.venues-filter {
+  padding-left: 20px;
+}
+
+.search-btn,
+.filter-btn,
+.search-input,
+.filter-input {
+  margin-left: 5px;
+}
+
+.venue-filter-btn {
+  float: left; 
+  font-size: 22px;
+}
+
+.search-filter-reset {
+  float: right;
+}
