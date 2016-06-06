@@ -14,15 +14,6 @@ export var Filter = React.createClass({
     Reflux.connect(concertStore)
   ],
 
-  handleChange(event) {
-    this.setState({selectedCity: event.target.value});
-  },
-
-  handleClick() {
-    var cityValue = this.state.cityValue;
-    concertActions.citySearch(showsJSON);
-  },
-
   handleCriteriaChange(event) {
     this.setState({criteria: event.target.value});
   },
@@ -49,9 +40,9 @@ export var Filter = React.createClass({
         <span className="venue-filter-btn glyphicon glyphicon-menu-hamburger" onClick={this.openLeftMenu}></span> 
         <div className="search-filter-reset">
           <span className="change-input">
-           <label>City Search:</label>
-           <input className="search-input" name="search-bar" type="text" onChange={this.handleChange} value={city}></input>
-           <button className="search-btn" onClick={this.handleClick}>Search</button>
+           <span>Current City:</span>
+           <span className="search-input" value={city}></span>
+           <button className="search-btn" data-toggle="modal" data-target="#myModal">Change City</button>
           </span>
           <span className="change-input">
             <label>Filter Shows:</label>

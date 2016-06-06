@@ -1,6 +1,7 @@
 import React from 'react';
 import Reflux from 'reflux';
 import ReactDOM from 'react-dom';
+import {CityModal} from './city_modal';
 import {Filter} from './filter';
 import {Menu} from './menu';
 import {concertStore} from './stores/show_store';
@@ -58,6 +59,7 @@ export var Shows = React.createClass({
           </div>
           <div className={menu.leftMenuActive + " c-mask"}></div>
         </div>
+				<CityModal/>
       </div>
     );
   }

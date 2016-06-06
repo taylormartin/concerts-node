@@ -6,6 +6,7 @@ export var concertActions = Reflux.createActions([
   'filterByVenues',
   'resetShows',
   'textFilterVenues',
-  'updateVenues'
+  'updateVenues',
+	'setCity'
 ]);
 
