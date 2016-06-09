@@ -2,8 +2,6 @@ import React from 'react';
 import Reflux from 'reflux';
 import {concertStore} from './stores/show_store';
 import {concertActions} from './actions/show_actions';
-import {citysJSON} from './responses/citys';
-import {showsJSON} from './responses/shows';
 import {menuActions} from './actions/menu_actions';
 import './styles/styles';
 import './styles/menu';
@@ -41,7 +39,7 @@ export var Filter = React.createClass({
         <div className="search-filter-reset">
           <span className="change-input">
            <span>Current City:</span>
-           <span className="search-input" value={city}></span>
+           <span className="search-input">{city}</span>
            <button className="search-btn" data-toggle="modal" data-target="#myModal">Change City</button>
           </span>
           <span className="change-input">
