@@ -9,7 +9,7 @@ import './styles/menu';
 export var Filter = React.createClass({
 
   mixins: [
-    Reflux.connect(concertStore)
+    Reflux.connect(concertStore, "showStatus")
   ],
 
   handleCriteriaChange(event) {
@@ -17,7 +17,7 @@ export var Filter = React.createClass({
   },
 
   filterShows() {
-    var criteria = this.state.criteria;
+    var criteria = this.state.showStatus.criteria;
     concertActions.filterShows(criteria);
   },
 
@@ -30,8 +30,8 @@ export var Filter = React.createClass({
   },
 
   render() {
-    var city = this.state.selectedCity;
-    var criteria = this.state.criteria;
+    var city = this.state.showStatus.selectedCity;
+    var criteria = this.state.showStatus.criteria;
 
     return (
       <div className="row search-filter-bar"> 
