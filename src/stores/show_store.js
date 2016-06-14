@@ -1,5 +1,6 @@
 import Reflux from 'reflux';
 import {concertActions} from '../actions/show_actions';
+import {showsJSON} from '../responses/shows';
 
 export var concertStore = Reflux.createStore({
   
@@ -7,7 +8,7 @@ export var concertStore = Reflux.createStore({
 
   init() {
     this.data = {
-      selectedCity: "atlanta",
+      selectedCity: {text: "", id: ""},
 			citySearchResult: [],
       venues:  [],
       shownVenues: [],
@@ -23,7 +24,8 @@ export var concertStore = Reflux.createStore({
     return this.data;
   },
 
-	onSetCity(showsJSON) {
+	onSetCity(modalState) {
+		debugger
     this.data.shows = showsJSON['concerts'].slice(0);
     this.data.allShows = showsJSON['concerts'].slice(0);
     this.data.venues = showsJSON['venues'].slice(0);

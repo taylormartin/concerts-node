@@ -11,28 +11,44 @@ export var CityModal = React.createClass({
     Reflux.connect(concertStore, "showStatus")
   ],
 
+	getInitialState() {
+		return ({
+			criteria: "",
+			id: "",
+			name: ""
+		});
+	},
+
 	handleSearch() {
 		concertActions.citySearch(citysJSON);
 	},
 
 	handleChange(event) {
-		this.setState({selectedCity: event.target.value});
+		this.setState({criteria: event.target.value});
 	},
 
 	handleSave() {
-		concertActions.setCity(showsJSON);
+		concertActions.setCity(this.state);
+	},
+
+	getCityState(result) {
+		return (result.city + ", " + result.state);
+	},
+
+	selectedCity(event) {
+		this.setState({
+			id: event.target.value,
+			name: event.target.dataset.name
+		});
 	},
 
 	getSearchResultsMarkup(results) {
     if ( results !== undefined ) {
       var resultsMarkup = results.map((result, index) => {
         return (
-          <div key={index} className="col-lg-6">
-            <div className="">
-              <div>{result.city}</div>
-              <div>{result.state}</div>
-            </div>
-          </div>
+					<div key={index}>
+						<input type="radio" name="city" onClick={this.selectedCity} data-name={result.city} value={result.metro_id}/>{this.getCityState(result)}
+					</div>
         );
       });
     } else {
@@ -46,7 +62,6 @@ export var CityModal = React.createClass({
 	},
 
 	render() {		
-		var city = this.state.showStatus.selectedCity;
 		var searchResultsMarkup = this.getSearchResultsMarkup(this.state.showStatus.citySearchResult);
 
 		return (
@@ -61,12 +76,14 @@ export var CityModal = React.createClass({
 							<div className="row">
 								<div className="col-xs-12">
 									<label>City Search:</label>
-									<input className="search-input" name="search-bar" type="text" onChange={this.handleChange} value={city}></input>
+									<input className="search-input" name="search-bar" type="text" onChange={this.handleChange} value={this.state.criteria}></input>
 									<button className="search-btn" onClick={this.handleSearch}>Search</button>
 								</div>
 							</div>
 							<div className="row">
-								{searchResultsMarkup} 
+								<div className="col-lg-12">
+									{searchResultsMarkup} 
+								</div>
 							</div>
 						</div>
 						<div className="modal-footer">
