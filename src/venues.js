@@ -11,7 +11,11 @@ export var Venues = React.createClass({
     Reflux.connect(concertStore, "concertStatus")
   ],
 
-  filterByVenues() {
+	getInitialState() {
+		return {venueInput: ""};
+	},
+
+  filterShowsByVenues() {
     var venues = this.state.concertStatus.venues;
     concertActions.filterByVenues(venues);
     menuActions.closeLeftMenu();
@@ -36,10 +40,13 @@ export var Venues = React.createClass({
     concertActions.updateVenues(newVenues);
   },
 
-  textFilterVenues(event) {
-    var criteria = event.target.value;
-    concertActions.textFilterVenues(criteria);
+  filterVenues(event) {
+    concertActions.textFilterVenues(this.state.venueInput);
   },
+
+	venueInputChange(event) {
+		this.setState({venueInput: event.target.value});
+	},
 
   getVenuesMarkup(venues, shownVenues) {
     var venuesMarkup = shownVenues.map((venue, index) => {
@@ -58,17 +65,18 @@ export var Venues = React.createClass({
     var venues = this.state.concertStatus.venues;
     var shownVenues = this.state.concertStatus.shownVenues;
     var venuesMarkup = this.getVenuesMarkup(venues, shownVenues);
-    var venueCriteria = this.state.concertStatus.venueCriteria;
+    var venueInput = this.state.venueInput;
     return (
       <div>
         <div>
          <label>Venue Filter:</label>
-         <input name="venue-text-filter" type="text" onChange={this.textFilterVenues} value={venueCriteria}></input>
+         <input name="venue-text-filter" type="text" onChange={this.venueInputChange} value={venueInput}></input>
         </div>
         <div className="venues-filter">
           <button onClick={this.uncheckAll}>Uncheck All</button>
-          <button onClick={this.filterByVenues}>Filter Venues</button>
-          {venuesMarkup} 
+          <button onClick={this.filterVenues}>Search</button>
+          <button onClick={this.filterShowsByVenues}>Filter By Venue</button>
+          {venuesMarkup}
         </div>
       </div>
     );

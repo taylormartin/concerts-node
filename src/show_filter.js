@@ -6,18 +6,22 @@ import {menuActions} from './actions/menu_actions';
 import './styles/styles';
 import './styles/menu';
 
-export var Filter = React.createClass({
+export var showFilter = React.createClass({
 
   mixins: [
     Reflux.connect(concertStore, "showStatus")
   ],
 
+	getInitialState() {
+		return {searchTerm: ""};
+	},
+
   handleCriteriaChange(event) {
-    this.setState({criteria: event.target.value});
+		this.setState({searchTerm: event.target.value});
   },
 
   filterShows() {
-    var criteria = this.state.showStatus.criteria;
+    var criteria = this.state.searchTerm;
     concertActions.filterShows(criteria);
   },
 
@@ -31,11 +35,11 @@ export var Filter = React.createClass({
 
   render() {
     var city = this.state.showStatus.selectedCity.text;
-    var criteria = this.state.showStatus.criteria;
+    var searchTerm = this.state.searchTerm;
 
     return (
-      <div className="row search-filter-bar"> 
-        <span className="venue-filter-btn glyphicon glyphicon-menu-hamburger" onClick={this.openLeftMenu}></span> 
+      <div className="row search-filter-bar">
+        <span className="venue-filter-btn glyphicon glyphicon-menu-hamburger" onClick={this.openLeftMenu}></span>
         <div className="search-filter-reset">
           <span className="change-input">
            <span>Current City:</span>
@@ -44,7 +48,7 @@ export var Filter = React.createClass({
           </span>
           <span className="change-input">
             <label>Filter Shows:</label>
-            <input className="filter-input" name="filter" type="text" onChange={this.handleCriteriaChange} value={criteria}></input>
+            <input className="filter-input" name="filter" type="text" onChange={this.handleCriteriaChange} value={searchTerm}></input>
             <button className="filter-btn" onClick={this.filterShows}>Filter</button>
           </span>
           <span className="change-input">
@@ -56,4 +60,3 @@ export var Filter = React.createClass({
   }
 
 });
-

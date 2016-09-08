@@ -3,7 +3,7 @@ import {concertActions} from '../actions/show_actions';
 import {showsJSON} from '../responses/shows';
 
 export var concertStore = Reflux.createStore({
-  
+
   listenables: concertActions,
 
   init() {
@@ -15,8 +15,6 @@ export var concertStore = Reflux.createStore({
       allVenues: [],
       shows: [],
       allShows: [],
-      criteria: "widespread",
-      venueCriteria: ""
     };
   },
 
@@ -25,7 +23,8 @@ export var concertStore = Reflux.createStore({
   },
 
 	onSetCity(modalState) {
-		debugger
+		this.data.selectedCity.text = modalState.name;
+		this.data.selectedCity.id = modalState.id;
     this.data.shows = showsJSON['concerts'].slice(0);
     this.data.allShows = showsJSON['concerts'].slice(0);
     this.data.venues = showsJSON['venues'].slice(0);
@@ -40,7 +39,6 @@ export var concertStore = Reflux.createStore({
   },
 
   onTextFilterVenues(criteria) {
-    this.data.venueCriteria = criteria;
     var allVenues = this.data.allVenues;
     var filteredVenues = [];
     for (var index in allVenues) {
@@ -76,14 +74,15 @@ export var concertStore = Reflux.createStore({
   },
 
   onFilterShows(criteria) {
-    this.data.criteria = criteria;
     var allShows = this.data.allShows;
     var filteredShows = [];
+		var venues = this.data.venues;
     for (var index in allShows) {
       var show = allShows[index];
       var matcher = new RegExp(criteria, "gi");
       var match = show.artist_name.match(matcher);
-      if ( match !== null && match.length > 0 ) {
+      var venueMatch = (venues.indexOf(show.venue_name) === -1 ? false : true)
+      if ( match !== null && match.length > 0 && venueMatch) {
         filteredShows.push(show);
       }
     }
@@ -99,4 +98,3 @@ export var concertStore = Reflux.createStore({
   }
 
 });
-

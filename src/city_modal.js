@@ -54,14 +54,14 @@ export var CityModal = React.createClass({
     } else {
       var resultsMarkup = function() {
         return (
-          <div></div>   
+          <div></div>
         );
       }
     }
     return resultsMarkup;
 	},
 
-	render() {		
+	render() {
 		var searchResultsMarkup = this.getSearchResultsMarkup(this.state.showStatus.citySearchResult);
 
 		return (
@@ -82,7 +82,7 @@ export var CityModal = React.createClass({
 							</div>
 							<div className="row">
 								<div className="col-lg-12">
-									{searchResultsMarkup} 
+									{searchResultsMarkup}
 								</div>
 							</div>
 						</div>

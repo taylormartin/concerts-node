@@ -9,4 +9,3 @@ export var concertActions = Reflux.createActions([
   'textFilterVenues',
   'updateVenues'
 ]);
-
