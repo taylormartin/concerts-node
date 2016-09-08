@@ -2,7 +2,7 @@ import React from 'react';
 import Reflux from 'reflux';
 import ReactDOM from 'react-dom';
 import {CityModal} from './city_modal';
-import {showFilter} from './show_filter';
+import {ShowFilter} from './show_filter';
 import {Menu} from './menu';
 import {concertStore} from './stores/show_store';
 import {menuStore} from './stores/menu_store';
@@ -51,7 +51,7 @@ export var Shows = React.createClass({
         <Menu active={menu.leftMenuActive} />
         <div className={"total-wrapper " + menu.bodyWrapper}>
           <div className={menu.oWrapper + " o-wrapper"}>
-            <showFilter/>
+            <ShowFilter/>
             <div className="row">
               {showsMarkup} 
             </div>

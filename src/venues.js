@@ -69,7 +69,7 @@ export var Venues = React.createClass({
     return (
       <div>
         <div>
-         <label>Venue Filter:</label>
+         <label>Search Venues:</label>
          <input name="venue-text-filter" type="text" onChange={this.venueInputChange} value={venueInput}></input>
         </div>
         <div className="venues-filter">
@@ -89,7 +89,7 @@ var Checkbox = React.createClass({
     return (
       <div className="row">
         <input className="venue-checkbox" type="checkbox" onChange={this.props.onChange} value={this.props.venue} checked={this.props.checked}/>
-        {this.props.venue}
+        <span className="venue-text">{this.props.venue}</span>
       </div>
     );
   }

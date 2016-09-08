@@ -47,7 +47,8 @@ export var CityModal = React.createClass({
       var resultsMarkup = results.map((result, index) => {
         return (
 					<div key={index}>
-						<input type="radio" name="city" onClick={this.selectedCity} data-name={result.city} value={result.metro_id}/>{this.getCityState(result)}
+						<input type="radio" name="city" onClick={this.selectedCity} data-name={result.city} value={result.metro_id}/>
+						<span className="city-text">{this.getCityState(result)}</span>
 					</div>
         );
       });

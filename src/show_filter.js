@@ -6,7 +6,7 @@ import {menuActions} from './actions/menu_actions';
 import './styles/styles';
 import './styles/menu';
 
-export var showFilter = React.createClass({
+export var ShowFilter = React.createClass({
 
   mixins: [
     Reflux.connect(concertStore, "showStatus")
@@ -44,12 +44,12 @@ export var showFilter = React.createClass({
           <span className="change-input">
            <span>Current City:</span>
            <span className="search-input">{city}</span>
-           <button className="search-btn" data-toggle="modal" data-target="#myModal">Change City</button>
+           <button className="search-btn" data-toggle="modal" data-target="#myModal">Select City</button>
           </span>
           <span className="change-input">
-            <label>Filter Shows:</label>
+            <label>Search Shows:</label>
             <input className="filter-input" name="filter" type="text" onChange={this.handleCriteriaChange} value={searchTerm}></input>
-            <button className="filter-btn" onClick={this.filterShows}>Filter</button>
+            <button className="filter-btn" onClick={this.filterShows}>Search</button>
           </span>
           <span className="change-input">
             <button onClick={this.resetShows}>Reset</button>

@@ -35,7 +35,7 @@ gulp.task('addFonts', function () {
 });
 
 gulp.task('clean', function() {
-  return del(['dist', 'src/css/application.css*', 'src/js/app*.js*']);
+  return del(['build/css/bs-application.css*', 'build/fonts/bootstrap/*']);
 });
 
 gulp.task("default", ['clean', 'addJsDep', 'addFonts', 'compileSass']);
