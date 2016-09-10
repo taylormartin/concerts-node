@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom';
 import {CityModal} from './city_modal';
 import {ShowFilter} from './show_filter';
 import {Menu} from './menu';
-import {concertStore} from './stores/show_store';
-import {menuStore} from './stores/menu_store';
-import {concertActions} from './actions/show_actions';
-import './styles/styles';
-import './styles/menu';
+import {concertStore} from '../stores/show_store';
+import {menuStore} from '../stores/menu_store';
+import {concertActions} from '../actions/show_actions';
+import '../styles/styles';
+import '../styles/menu';
 
 export var Shows = React.createClass({
 

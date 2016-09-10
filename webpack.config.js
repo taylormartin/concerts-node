@@ -1,7 +1,7 @@
 var configObj = {
 
   entry: {
-    app: './src/app.js',
+    app: './src/components/app.js',
   },
 
   output: {

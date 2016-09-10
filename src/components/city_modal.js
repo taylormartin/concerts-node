@@ -1,9 +1,9 @@
 import React from 'react';
 import Reflux from 'reflux';
-import {concertActions} from './actions/show_actions';
-import {concertStore} from './stores/show_store';
-import {citysJSON} from './responses/citys';
-import {showsJSON} from './responses/shows';
+import {concertActions} from '../actions/show_actions';
+import {concertStore} from '../stores/show_store';
+import {citysJSON} from '../responses/citys';
+import {showsJSON} from '../responses/shows';
 
 export var CityModal = React.createClass({
 

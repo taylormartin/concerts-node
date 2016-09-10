@@ -1,10 +1,10 @@
 import React from 'react';
 import Reflux from 'reflux';
-import {concertActions} from './actions/show_actions';
-import {menuActions} from './actions/menu_actions';
+import {concertActions} from '../actions/show_actions';
+import {menuActions} from '../actions/menu_actions';
 import {Venues} from './venues';
-import './styles/styles';
-import './styles/menu';
+import '../styles/styles';
+import '../styles/menu';
 
 export var Menu = React.createClass({
 

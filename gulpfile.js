@@ -28,15 +28,18 @@ gulp.task('compileSass', function () {
         .pipe(gulp.dest('build/css/'));
 });
 
+gulp.task('copyIndex', function () {
+	return gulp.src('src/index.html').pipe(gulp.dest('build/'));
+});
+
 gulp.task('addFonts', function () {
-    return gulp
-        .src('./bower_components/bootstrap-sass/assets/fonts/**/*')
+    return gulp.src('./bower_components/bootstrap-sass/assets/fonts/**/*')
         .pipe(gulp.dest('build/fonts/'));
 });
 
 gulp.task('clean', function() {
-  return del(['build/css/bs-application.css*', 'build/fonts/bootstrap/*']);
+  return del(['build/*']);
 });
 
-gulp.task("default", ['clean', 'addJsDep', 'addFonts', 'compileSass']);
+gulp.task("default", ['clean', 'copyIndex', 'addJsDep', 'addFonts', 'compileSass']);
 

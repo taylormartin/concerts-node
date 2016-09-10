@@ -1,10 +1,10 @@
 import React from 'react';
 import Reflux from 'reflux';
-import {concertStore} from './stores/show_store';
-import {concertActions} from './actions/show_actions';
-import {menuActions} from './actions/menu_actions';
-import './styles/styles';
-import './styles/menu';
+import {concertStore} from '../stores/show_store';
+import {concertActions} from '../actions/show_actions';
+import {menuActions} from '../actions/menu_actions';
+import '../styles/styles';
+import '../styles/menu';
 
 export var ShowFilter = React.createClass({
 
