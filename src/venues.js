@@ -3,6 +3,7 @@ import Reflux from 'reflux';
 import {concertStore} from './stores/show_store';
 import {concertActions} from './actions/show_actions';
 import {menuActions} from './actions/menu_actions';
+import {Checkbox} from './checkbox';
 import './styles/styles';
 import './styles/menu';
 
@@ -12,7 +13,7 @@ export var Venues = React.createClass({
   ],
 
 	getInitialState() {
-		return {venueInput: ""};
+		return {venueInput: "", toglleAllChecked: true};
 	},
 
   filterShowsByVenues() {
@@ -21,9 +22,16 @@ export var Venues = React.createClass({
     menuActions.closeLeftMenu();
   },
 
-  uncheckAll() {
-    var blankArray = [];
-    concertActions.updateVenues(blankArray);
+  toggleAll(checked) {
+		debugger;
+		if (checked === true) {
+			var blankArray = [];
+			concertActions.updateVenues(blankArray);
+			this.setState({toggleAllChecked: false});
+		} else {
+			concertActions.updateVenues();
+			this.setState({toggleAllChecked: true});
+		}
   },
 
   venueChange(event) {
@@ -66,33 +74,24 @@ export var Venues = React.createClass({
     var shownVenues = this.state.concertStatus.shownVenues;
     var venuesMarkup = this.getVenuesMarkup(venues, shownVenues);
     var venueInput = this.state.venueInput;
+		var toggleAllChecked = this.state.toggleAllChecked;
     return (
       <div>
-        <div>
-         <label>Search Venues:</label>
-         <input name="venue-text-filter" type="text" onChange={this.venueInputChange} value={venueInput}></input>
-        </div>
-        <div className="venues-filter">
-          <button onClick={this.uncheckAll}>Uncheck All</button>
-          <button onClick={this.filterVenues}>Search</button>
-          <button onClick={this.filterShowsByVenues}>Filter By Venue</button>
-          {venuesMarkup}
-        </div>
+				<div className="venues-filter">
+				<div>
+				 <button className="wide-btn" onClick={this.filterShowsByVenues}>Filter Shows By Venue</button>
+				 <div>
+					 <label className="search-label">Search Venues:</label>
+					 <input name="venue-text-filter" type="text" onChange={this.venueInputChange} value={venueInput}></input>
+					 <button className="search-btn" onClick={this.filterVenues}>Search</button>
+				 </div>
+				</div>
+					<Checkbox checked={toggleAllChecked} onChange={this.toggleAll(toggleAllChecked)} venue={"Toggle All"}/>
+					{venuesMarkup}
+				</div>
       </div>
     );
   }
 });
 
-var Checkbox = React.createClass({
-
-  render() {
-    return (
-      <div className="row">
-        <input className="venue-checkbox" type="checkbox" onChange={this.props.onChange} value={this.props.venue} checked={this.props.checked}/>
-        <span className="venue-text">{this.props.venue}</span>
-      </div>
-    );
-  }
-
-});
 

@@ -22,6 +22,7 @@
 .c-menu__close {
   color: #fff;
   background-color: black;
+	height: 40px;
   font-size: 14px;
   border: none;
   box-shadow: none;
@@ -81,7 +82,7 @@ body.has-active-menu {
 
 @media all and (min-width: 320px) {
   .c-menu--slide-left, .c-menu--slide-right, .c-menu--push-left, .c-menu--push-right {
-    width: 300px;
+    width: 400px;
   }
 }
 
@@ -120,7 +121,7 @@ body.has-active-menu {
 
 @media all and (min-width: 320px) {
   .c-menu--slide-left, .c-menu--push-left {
-    transform: translateX(-300px);
+    transform: translateX(-400px);
   }
 }
 
@@ -139,12 +140,12 @@ body.has-active-menu {
 
 @media all and (min-width: 320px) {
   .o-wrapper.has-push-left {
-    transform: translateX(300px);
+    transform: translateX(400px);
   }
 }
 
 @media all and (min-width: 320px) {
   .o-wrapper.has-push-right {
-    transform: translateX(-300px);
+    transform: translateX(-400px);
   }
 }

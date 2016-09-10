@@ -15,7 +15,7 @@
 }
 
 .venues-filter {
-  padding-left: 20px;
+  padding: 20px;
 }
 
 .venue-text,
@@ -34,4 +34,13 @@
 
 .search-filter-reset {
   float: right;
+}
+
+.wide-btn {
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.search-label {
+	margin-right: 10px;
 }
