@@ -47,9 +47,9 @@ export var ShowFilter = React.createClass({
            <button className="search-btn" data-toggle="modal" data-target="#myModal">Select City</button>
           </span>
           <span className="change-input">
-            <label>Search Shows:</label>
+            <label>Filter Shows:</label>
             <input className="filter-input" name="filter" type="text" onChange={this.handleCriteriaChange} value={searchTerm}></input>
-            <button className="filter-btn" onClick={this.filterShows}>Search</button>
+            <button className="filter-btn" onClick={this.filterShows}>Filter by Artist</button>
           </span>
           <span className="change-input">
             <button onClick={this.resetShows}>Reset</button>

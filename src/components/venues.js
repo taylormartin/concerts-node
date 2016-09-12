@@ -80,9 +80,9 @@ export var Venues = React.createClass({
 				<div>
 				 <button className="wide-btn" onClick={this.filterShowsByVenues}>Filter Shows By Venue</button>
 				 <div>
-					 <label className="search-label">Search Venues:</label>
+					 <label className="search-label">Filter Venues:</label>
 					 <input name="venue-text-filter" type="text" onChange={this.venueInputChange} value={venueInput}></input>
-					 <button className="search-btn" onClick={this.filterVenues}>Search</button>
+					 <button className="search-btn" onClick={this.filterVenues}>Filter</button>
 				 </div>
 				</div>
 					<Checkbox checked={toggleChecked} onChange={this.toggleAll} venue={"Toggle All"}/>
