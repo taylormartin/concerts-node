@@ -38,7 +38,7 @@ gulp.task('addFonts', function () {
 });
 
 gulp.task('clean', function() {
-  return del(['build/*']);
+  return del.sync(['build/js', 'build/css', 'build/fonts']);
 });
 
 gulp.task("default", ['clean', 'copyIndex', 'addJsDep', 'addFonts', 'compileSass']);
