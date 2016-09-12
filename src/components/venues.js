@@ -13,7 +13,9 @@ export var Venues = React.createClass({
   ],
 
 	getInitialState() {
-		return {venueInput: "", toglleAllChecked: true};
+		return {
+			venueInput: "",
+		};
 	},
 
   filterShowsByVenues() {
@@ -22,15 +24,12 @@ export var Venues = React.createClass({
     menuActions.closeLeftMenu();
   },
 
-  toggleAll(checked) {
-		debugger;
-		if (checked === true) {
-			var blankArray = [];
-			concertActions.updateVenues(blankArray);
-			this.setState({toggleAllChecked: false});
+  toggleAll() {
+		var allVenues = this.state.concertStatus.allVenues.slice(0);
+		if (this.state.concertStatus.venues.length === 0) {
+			concertActions.updateVenues(allVenues);
 		} else {
-			concertActions.updateVenues();
-			this.setState({toggleAllChecked: true});
+			concertActions.updateVenues([]);
 		}
   },
 
@@ -74,7 +73,7 @@ export var Venues = React.createClass({
     var shownVenues = this.state.concertStatus.shownVenues;
     var venuesMarkup = this.getVenuesMarkup(venues, shownVenues);
     var venueInput = this.state.venueInput;
-		var toggleAllChecked = this.state.toggleAllChecked;
+		var toggleChecked = this.state.concertStatus.venues.length === 0 ? false : true;
     return (
       <div>
 				<div className="venues-filter">
@@ -86,7 +85,7 @@ export var Venues = React.createClass({
 					 <button className="search-btn" onClick={this.filterVenues}>Search</button>
 				 </div>
 				</div>
-					<Checkbox checked={toggleAllChecked} onChange={this.toggleAll(toggleAllChecked)} venue={"Toggle All"}/>
+					<Checkbox checked={toggleChecked} onChange={this.toggleAll} venue={"Toggle All"}/>
 					{venuesMarkup}
 				</div>
       </div>
