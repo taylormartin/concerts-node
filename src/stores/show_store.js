@@ -10,6 +10,8 @@ export var concertStore = Reflux.createStore({
     this.data = {
       selectedCity: {text: "", id: ""},
 			citySearchResult: [],
+			startDate: "",
+			endDate: "",
       venues:  [],
       shownVenues: [],
       allVenues: [],
@@ -22,21 +24,34 @@ export var concertStore = Reflux.createStore({
     return this.data;
   },
 
+	onSearchForShows() {
+
+	},
+
+	onSearchForCities() {
+
+	},
+
+	onSetStartDate(startDate) {
+		this.data.startDate = startDate;
+		this.trigger(this.data);
+	},
+
+	onSetEndDate(endDate) {
+		this.data.endDate = endDate;
+		this.trigger(this.data);
+	},
+
 	onSetCity(modalState) {
 		this.data.selectedCity.text = modalState.name;
 		this.data.selectedCity.id = modalState.id;
-    this.data.shows = showsJSON['concerts'].slice(0);
-    this.data.allShows = showsJSON['concerts'].slice(0);
-    this.data.venues = showsJSON['venues'].slice(0);
-    this.data.shownVenues = showsJSON['venues'].slice(0);
-    this.data.allVenues = showsJSON['venues'].slice(0);
     this.trigger(this.data);
 	},
 
-  onCitySearch(citysJSON) {
-		this.data.citySearchResult = citysJSON;
-    this.trigger(this.data);
-  },
+  //onCitySearch(citysJSON) {
+	//	this.data.citySearchResult = citysJSON;
+  //  this.trigger(this.data);
+  //},
 
   onTextFilterVenues(criteria) {
     var allVenues = this.data.allVenues;

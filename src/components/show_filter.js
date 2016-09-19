@@ -13,17 +13,33 @@ export var ShowFilter = React.createClass({
   ],
 
 	getInitialState() {
-		return {searchTerm: ""};
+		return {
+			searchTerm: "",
+		};
 	},
 
   handleCriteriaChange(event) {
 		this.setState({searchTerm: event.target.value});
   },
 
+  startDateChange(event) {
+		var startDate = event.target.value;
+		concertActions.setStartDate(startDate);
+  },
+
+  endDateChange(event) {
+		var endDate = event.target.value;
+		concertActions.setEndDate(endDate);
+  },
+
   filterShows() {
     var criteria = this.state.searchTerm;
     concertActions.filterShows(criteria);
   },
+
+	searchForShows() {
+		concertActions.searchForShows();
+	},
 
   resetShows() {
     concertActions.resetShows();
@@ -35,12 +51,18 @@ export var ShowFilter = React.createClass({
 
   render() {
     var city = this.state.showStatus.selectedCity.text;
+		var startDate = this.state.showStatus.startDate;
+		var endDate = this.state.showStatus.endDate;
     var searchTerm = this.state.searchTerm;
 
     return (
       <div className="row search-filter-bar">
         <span className="venue-filter-btn glyphicon glyphicon-menu-hamburger" onClick={this.openLeftMenu}></span>
         <div className="search-filter-reset">
+					<label>Start Date:</label>
+					<input type="date" name="start-date" onChange={this.startDateChange} value={startDate}></input>
+					<label>End Date:</label>
+					<input type="date" name="end-date" onChange={this.endDateChange} value={endDate}></input>
           <span className="change-input">
            <span>Current City:</span>
            <span className="search-input">{city}</span>
@@ -53,6 +75,9 @@ export var ShowFilter = React.createClass({
           </span>
           <span className="change-input">
             <button onClick={this.resetShows}>Reset</button>
+          </span>
+          <span className="change-input">
+            <button onClick={this.searchForShows}>Search</button>
           </span>
         </div>
       </div>

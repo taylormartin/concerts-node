@@ -1,11 +1,14 @@
 import Reflux from 'reflux';
 
 export var concertActions = Reflux.createActions([
-  'citySearch',
 	'setCity',
+	'setStartDate',
+	'setEndDate',
   'filterShows',
   'filterByVenues',
   'resetShows',
   'textFilterVenues',
-  'updateVenues'
+  'updateVenues',
+	'searchForShows',
+	'searchForCities'
 ]);

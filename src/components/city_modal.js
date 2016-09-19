@@ -19,8 +19,8 @@ export var CityModal = React.createClass({
 		});
 	},
 
-	handleSearch() {
-		concertActions.citySearch(citysJSON);
+	searchForCities() {
+		concertActions.searchForCities();
 	},
 
 	handleChange(event) {
@@ -78,7 +78,7 @@ export var CityModal = React.createClass({
 								<div className="col-xs-12">
 									<label>City Search:</label>
 									<input className="search-input" name="search-bar" type="text" onChange={this.handleChange} value={this.state.criteria}></input>
-									<button className="search-btn" onClick={this.handleSearch}>Search</button>
+									<button className="search-btn" onClick={this.searchForCities}>Search</button>
 								</div>
 							</div>
 							<div className="row">
