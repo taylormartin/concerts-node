@@ -3,6 +3,7 @@ import Reflux from 'reflux';
 import ReactDOM from 'react-dom';
 import {CityModal} from './city_modal';
 import {ShowFilter} from './show_filter';
+import {Show} from './show';
 import {Menu} from './menu';
 import {concertStore} from '../stores/show_store';
 import {menuStore} from '../stores/menu_store';
@@ -21,14 +22,7 @@ export var Shows = React.createClass({
     if ( shows !== undefined ) {
       var showsMarkup = shows.map((show, index) => {
         return (
-          <div key={index} className="col-lg-2">
-            <div className="concert-card">
-              <div>{show.artist_name}</div>
-              <div>{show.venue_name}</div>
-              <div>{show.date}</div>
-              <a target="_blank" href={show.link}>Concert Link</a>
-            </div>
-          </div>
+					<Show key={index} show={show}/>
         );
       });
     } else {
